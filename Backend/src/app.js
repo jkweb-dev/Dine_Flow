@@ -2,6 +2,10 @@ import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
 
+
+import Userrouter from "./routes/user.js";
+import Admin_Userrouter from "./routes/admin-user.js";
+
 const app = express();
 
 // Middleware
@@ -23,5 +27,11 @@ app.get("/api/health", (req, res) => {
     message: "DineFlow API is running",
   });
 });
+
+app.use("/api/auth",Userrouter);
+app.use("/api/admin",Admin_Userrouter);
+
+// Admin routes
+
 
 export default app;
