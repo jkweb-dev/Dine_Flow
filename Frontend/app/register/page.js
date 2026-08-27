@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/src/context/authProvider";
 import RegisterForm from "@/Components/registerForm";
 import handleError from "@/src/utils/handleError";
+import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -46,17 +47,17 @@ const RegisterPage = () => {
     } = formData;
 
     if (!userId || !name || !phone || !password || !confirmPassword) {
-      setError("Please fill in all fields.");
+      toast.error("Please fill in all fields.");
       return;
     }
 
     if (password.length < 6) {
-      setError("Password must be at least 6 characters.");
+      toast.error("Password must be at least 6 characters.");
       return;
     }
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
