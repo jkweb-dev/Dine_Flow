@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 import api from "@/src/lib/axios";
 import ProductCreateForm from "@/Components/products/ProductCreateForm";
+import handleError from "@/src/utils/handleError";
 
 
 const ProductCreatePage = () => {
@@ -256,12 +257,10 @@ const ProductCreatePage = () => {
 
      
     } catch (error) {
-      console.error("Create product error:", error);
-
-      toast.error(
-        error.response?.data?.message ||
-          "Failed to create product. Please try again."
-      );
+       handleError(error, router, {
+             redirectOn401: true,
+           });
+         
     } finally {
       setLoading(false);
     }

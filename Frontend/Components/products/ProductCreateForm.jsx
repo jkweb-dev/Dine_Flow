@@ -284,7 +284,7 @@ const ProductCreateForm = ({
               {/* SIZES & PRICES */}
               <section className="rounded-3xl border border-[#eadfd7] bg-white shadow-sm">
                 <div className="border-b border-[#f0e5dd] px-5 py-4 sm:px-6">
-                  <div className="flex  gap-3">
+                  <div className="flex items-center  gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#fff0e7] text-[#f97316]">
                       <PackagePlus size={20} />
                     </div>
