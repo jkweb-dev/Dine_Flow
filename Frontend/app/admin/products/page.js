@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import api from "@/src/lib/axios";
 import handleError from "@/src/utils/handleError";
 import ProductList from "@/Components/products/ProductList";
+import toast from "react-hot-toast"
 
 const ProductsPage = () => {
   const router = useRouter();
@@ -85,6 +86,37 @@ const ProductsPage = () => {
     }
   };
 
+
+  // ======================================================
+// TOGGLE AVAILABILITY
+// ======================================================
+
+const handleToggleAvailability = async (productId) => {
+  try {
+    const response = await api.patch(
+      `/admin/products/${productId}/availability`
+    );
+
+    const updatedProduct = response.data.product;
+
+    setProducts((previousProducts) =>
+      previousProducts.map((product) =>
+        product._id === productId
+          ? updatedProduct
+          : product
+      )
+    );
+
+    toast.success(
+      response.data?.message ||
+        "Product availability updated."
+    );
+  } catch (error) {
+    handleError(error, router, {
+      redirectOn401: true,
+    });
+  }
+};
   // =========================
   // RETRY
   // =========================
@@ -105,6 +137,7 @@ const ProductsPage = () => {
       onCreateProduct={handleCreateProduct}
       onEditProduct={handleEditProduct}
       onDeleteProduct={handleDeleteProduct}
+        onToggleAvailability={handleToggleAvailability}
       onRetry={handleRetry}
     />
   );

@@ -21,6 +21,7 @@ const ProductList = ({
   onCreateProduct,
   onEditProduct,
   onDeleteProduct,
+   onToggleAvailability,
   onRetry,
 }) => {
 
@@ -254,6 +255,7 @@ const ProductList = ({
                 key={product._id}
                 product={product}
                 onEdit={onEditProduct}
+                 onToggleAvailability={onToggleAvailability}
                   onDelete={() => setDeleteProduct(product)}
               />
             ))}
@@ -319,6 +321,8 @@ const ProductCard = ({
   product,
   onEdit,
   onDelete,
+   onToggleAvailability,
+   
 }) => {
   const imageUrl =
     product.image?.url ||
@@ -437,6 +441,72 @@ const ProductCard = ({
           </button>
 
         </div>
+
+
+<button
+  type="button"
+  onClick={() =>
+    onToggleAvailability(product._id)
+  }
+  className={`mt-3 flex h-11 w-full items-center justify-between rounded-xl border px-3.5 transition ${
+    isAvailable
+      ? "border-green-100 bg-green-50 hover:bg-green-100"
+      : "border-[#e8ddd5] bg-[#f8f3ef] hover:bg-[#eee6df]"
+  }`}
+>
+  <div className="flex items-center gap-2.5">
+
+    <span
+      className={`flex h-7 w-7 items-center justify-center rounded-lg ${
+        isAvailable
+          ? "bg-green-500 text-white"
+          : "bg-[#756b65] text-white"
+      }`}
+    >
+      {isAvailable ? (
+        <Check size={14} />
+      ) : (
+        <EyeOff size={14} />
+      )}
+    </span>
+
+    <div className="text-left">
+      <p
+        className={`text-xs font-black ${
+          isAvailable
+            ? "text-green-700"
+            : "text-[#756b65]"
+        }`}
+      >
+        {isAvailable
+          ? "Available"
+          : "Unavailable"}
+      </p>
+
+      <p className="text-[10px] font-medium text-[#9b918b]">
+        Tap to change
+      </p>
+    </div>
+  </div>
+
+  {/* Toggle */}
+
+  <span
+    className={`relative h-6 w-11 rounded-full transition ${
+      isAvailable
+        ? "bg-green-500"
+        : "bg-[#c9beb7]"
+    }`}
+  >
+    <span
+      className={`absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${
+        isAvailable
+          ? "-translate-x-5"
+          : "translate-x-1"
+      }`}
+    />
+  </span>
+</button>
       </div>
     </article>
   );
