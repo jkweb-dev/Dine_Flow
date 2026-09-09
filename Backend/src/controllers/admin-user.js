@@ -59,3 +59,64 @@ export const createDeliveryBoy = async (req, res) => {
     });
   }
 };
+
+
+// GET ALL DELIVERY BOYS
+export const getAllDeliveryBoys = async (req, res) => {
+  try {
+    const deliveryBoys = await User.find({ role: "deliveryBoy" })
+      .select("-password")
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      count: deliveryBoys.length,
+      deliveryBoys,
+    });
+  } catch (error) {
+    console.error("Get delivery boys error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error while getting delivery boys",
+    });
+  }
+};
+
+// DELETE DELIVERY BOY
+export const deleteDeliveryBoy = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deliveryBoy = await User.findById(id);
+
+    if (!deliveryBoy) {
+      return res.status(404).json({
+        success: false,
+        message: "Delivery boy not found",
+      });
+    }
+
+    // Make sure admin cannot accidentally delete another type of user
+    if (deliveryBoy.role !== "deliveryBoy") {
+      return res.status(403).json({
+        success: false,
+        message: "You can only delete delivery boy accounts",
+      });
+    }
+
+    await User.findByIdAndDelete(id);
+
+    return res.status(200).json({
+      success: true,
+      message: "Delivery boy deleted successfully",
+    });
+  } catch (error) {
+    console.error("Delete delivery boy error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Server error while deleting delivery boy",
+    });
+  }
+};
