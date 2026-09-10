@@ -252,6 +252,7 @@ const DeliveryList = ({
                   {/* Mobile */}
                   <div className="md:hidden">
                     <div className="flex items-start justify-between gap-3">
+                        
                       <div className="flex min-w-0 items-center gap-3">
                         <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#fff0eb] text-[#c92a2a]">
                           <User size={20} />
