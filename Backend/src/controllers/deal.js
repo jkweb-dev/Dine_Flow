@@ -40,7 +40,7 @@ export const createDeal = async (req, res) => {
       !name ||
       !shortDescription ||
       !items ||
-      dealPrice === undefined ||
+      !dealPrice||
       !startDate ||
       !endDate
     ) {
