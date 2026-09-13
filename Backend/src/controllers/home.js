@@ -86,3 +86,40 @@ export const getHomeProductById = async (req, res) => {
     });
   }
 };
+
+
+export const getHomeDealById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const deal = await Deal.findOne({
+      _id: id,
+      available: true,
+      startDate: { $lte: new Date() },
+      endDate: { $gte: new Date() },
+    })
+      .select(
+        "_id dealId image name shortDescription items dealPrice available startDate endDate"
+      )
+      .lean();
+
+    if (!deal) {
+      return res.status(404).json({
+        success: false,
+        message: "Deal not found or is no longer available.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      deal,
+    });
+  } catch (error) {
+    console.error("Get home deal by ID error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch deal.",
+    });
+  }
+};
