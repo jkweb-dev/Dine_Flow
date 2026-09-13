@@ -5,11 +5,10 @@ export const getHomeProducts = async (req, res) => {
   try {
     const products = await Product.find({ available: true })
       .sort({ createdAt: -1 })
-      .limit(8)
       .select(
         "_id productId image name shortDescription category sizes available"
       )
-      .lean();
+     
 
     return res.status(200).json({
       success: true,
