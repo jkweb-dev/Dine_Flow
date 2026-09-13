@@ -53,3 +53,37 @@ export const getHomeDeals = async (req, res) => {
     });
   }
 };
+
+export const getHomeProductById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await Product.findOne({
+      _id: id,
+      available: true,
+    })
+      .select(
+        "_id productId image name shortDescription category sizes available"
+      )
+      .lean();
+
+    if (!product) {
+      return res.status(404).json({
+        success: false,
+        message: "Product not found.",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      product,
+    });
+  } catch (error) {
+    console.error("Get home product by ID error:", error);
+
+    return res.status(500).json({
+      success: false,
+      message: "Failed to fetch product.",
+    });
+  }
+};
