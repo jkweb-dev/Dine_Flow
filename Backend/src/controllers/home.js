@@ -34,7 +34,6 @@ export const getHomeDeals = async (req, res) => {
       endDate: { $gte: now },
     })
       .sort({ createdAt: -1 })
-      .limit(4)
       .select(
         "_id dealId image name shortDescription items dealPrice available startDate endDate"
       )

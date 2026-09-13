@@ -84,6 +84,8 @@ const HomePage = () => {
 
   const moreMenuProducts = products.slice(4, 8);
 
+  const FeatureDeals = deals.slice(0 ,4)
+
   return (
     <div className="min-h-screen bg-[#fffaf5] text-[#2b211d]">
       <HomeNavbar
@@ -109,7 +111,7 @@ const HomePage = () => {
         />
 
         <FeaturedDeals
-          deals={deals}
+          deals={FeatureDeals}
           onViewAll={handleViewDeals}
         />
 
