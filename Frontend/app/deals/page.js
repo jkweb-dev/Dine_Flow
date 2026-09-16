@@ -1,5 +1,5 @@
 "use client";
-
+import HomeNavbar from "@/Components/Home/Navbar";
 import { useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -70,6 +70,7 @@ const DealsPage = () => {
   return (
     <div className="min-h-screen bg-[#fffaf5] text-[#2b211d]">
       <main>
+        <HomeNavbar/>
         <DealsHeader />
 
         <DealsSearch

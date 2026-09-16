@@ -10,6 +10,7 @@ import {
   ClipboardList,
   ChevronRight,
 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 const HomeNavbar = ({
   user,
@@ -64,6 +65,8 @@ const HomeNavbar = ({
     }
   };
 
+  const pathname = usePathname()
+
   return (
     <header className="sticky top-0 z-50 border-b border-orange-100/80 bg-[#fffaf5]/95 backdrop-blur-xl">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -92,28 +95,28 @@ const HomeNavbar = ({
         <nav className="hidden items-center gap-8 md:flex">
           <Link
             href="/"
-            className="text-sm font-semibold text-[#c92a2a] transition-colors duration-200"
+            className={`text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a] ${pathname === "/"?  "text-[#c92a2a]" : "" }`}
           >
             Home
           </Link>
 
           <Link
             href="/menu"
-            className="text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a]"
+            className={`text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a] ${pathname === "/menu" ? "text-[#c92a2a]" : "" }`}
           >
             Menu
           </Link>
 
           <Link
             href="/deals"
-            className="text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a]"
+            className={`text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a] ${pathname === "/deals"?  "text-[#c92a2a]" : "" }`}
           >
             Deals
           </Link>
 
           <Link
             href="/about"
-            className="text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a]"
+            className={`text-sm font-semibold text-[#5f5049] transition-colors duration-200 hover:text-[#c92a2a] ${pathname === "/about" ?  "text-[#c92a2a]" : "" }`}
           >
             About
           </Link>

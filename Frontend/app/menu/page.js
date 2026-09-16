@@ -1,6 +1,8 @@
 
 "use client";
 
+import HomeNavbar from "@/Components/Home/Navbar";
+
 import { useEffect, useMemo, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
@@ -65,6 +67,7 @@ const MenuPage = () => {
   return (
     <div className="min-h-screen bg-[#fffaf5] text-[#2b211d]">
       <main>
+        <HomeNavbar/>
         <MenuHeader />
 
         <MenuCategories
