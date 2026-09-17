@@ -81,8 +81,11 @@ const ProductPage = () => {
   const cartItem = {
     type: "product",
     productId: product._id,
+    name: product.name,
+    image: product.image,
     size: selectedSize.name,
-    
+    price: selectedSize.price,
+    quantity,
   };
 
   addToCart(cartItem);

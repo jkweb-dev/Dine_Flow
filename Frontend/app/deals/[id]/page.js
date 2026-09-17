@@ -59,13 +59,16 @@ const DealDetailsPage = () => {
   const cartItem = {
     type: "deal",
     dealId: deal._id,
+    name: deal.name,
+    image: deal.image,
+    price: deal.dealPrice,
+    quantity,
   };
 
   addToCart(cartItem);
 
   toast.success("Deal added to cart");
 };
-
   if (loading) {
     return (
       <main className="min-h-screen bg-[#fffaf5] px-4 py-10">
