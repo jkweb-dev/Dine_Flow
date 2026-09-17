@@ -5,11 +5,15 @@ import { useParams, useRouter } from "next/navigation";
 
 import api from "@/src/lib/axios";
 import handleError from "@/src/utils/handleError";
+import { useCart } from "@/src/context/cartProvider";
+import toast from "react-hot-toast";
 
 import ProductImage from "@/Components/MenuProduct/Image";
 import ProductDetails from "@/Components/MenuProduct/productDetails";
 
 const ProductPage = () => {
+
+  const { addToCart } = useCart();
   const params = useParams();
   const router = useRouter();
 
@@ -72,14 +76,19 @@ const ProductPage = () => {
     : 0;
 
   const handleAddToCart = () => {
-    console.log("Add to cart:", {
-      productId: product._id,
-      name: product.name,
-      size: selectedSize,
-      quantity,
-      totalPrice,
-    });
+  if (!product || !selectedSize) return;
+
+  const cartItem = {
+    type: "product",
+    productId: product._id,
+    size: selectedSize.name,
+    
   };
+
+  addToCart(cartItem);
+
+  toast.success("Added to cart");
+};
 
   if (loading) {
     return (

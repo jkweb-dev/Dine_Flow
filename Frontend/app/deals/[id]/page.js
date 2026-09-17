@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
+import { useCart } from "@/src/context/cartProvider";
+import toast from "react-hot-toast";
 
 import api from "@/src/lib/axios";
 import handleError from "@/src/utils/handleError";
@@ -9,6 +11,9 @@ import handleError from "@/src/utils/handleError";
 import DealDetails from "@/Components/dealProduct/dealDetails";
 
 const DealDetailsPage = () => {
+
+  const {addToCart} = useCart()
+  
   const params = useParams();
   const router = useRouter();
 
@@ -48,20 +53,18 @@ const DealDetailsPage = () => {
     setQuantity((currentQuantity) => currentQuantity + 1);
   };
 
-  const handleAddToCart = () => {
-    if (!deal) return;
+ const handleAddToCart = () => {
+  if (!deal) return;
 
-    const cartItem = {
-      type: "deal",
-      dealId: deal._id,
-      name: deal.name,
-      image: deal.image,
-      price: deal.dealPrice,
-      quantity,
-    };
-
-    console.log("Deal added to cart:", cartItem);
+  const cartItem = {
+    type: "deal",
+    dealId: deal._id,
   };
+
+  addToCart(cartItem);
+
+  toast.success("Deal added to cart");
+};
 
   if (loading) {
     return (

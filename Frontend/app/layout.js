@@ -1,6 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { AuthProvider } from "@/src/context/authProvider";
+import { CartProvider } from "@/src/context/cartProvider";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
@@ -26,11 +27,13 @@ export default function RootLayout({ children }) {
     >
       <body className="min-h-full flex flex-col">
         <AuthProvider>
+          <CartProvider>
         {children}
          <Toaster
           position="top-right"
           reverseOrder={false}
         />
+        </CartProvider>
         </AuthProvider>
         </body>
     </html>
