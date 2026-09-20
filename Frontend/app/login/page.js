@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { toast } from "react-hot-toast";
 
 import { useAuth } from "@/src/context/authProvider";
@@ -11,7 +11,11 @@ import LoginForm from "@/Components/loginForm";
 
 const LoginPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const { login } = useAuth();
+
+  const redirect = searchParams.get("redirect");
 
   const [formData, setFormData] = useState({
     userId: "",
@@ -53,6 +57,8 @@ const LoginPage = () => {
 
       toast.success("Login successful!");
 
+      // Go back to the page user originally wanted
+      router.push(redirect || "/");
     } catch (error) {
       handleError(error, router);
     } finally {
@@ -66,6 +72,7 @@ const LoginPage = () => {
       loading={loading}
       onChange={handleChange}
       onSubmit={handleSubmit}
+      redirect={redirect}
     />
   );
 };

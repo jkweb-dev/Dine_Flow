@@ -6,12 +6,16 @@ import { useRouter } from "next/navigation";
 import api from "@/src/lib/axios";
 import handleError from "@/src/utils/handleError";
 
+import { useAuth } from "@/src/context/authProvider";
+
 import DealsHeader from "@/Components/Deals/header";
 import DealsSearch from "@/Components/Deals/search";
 import DealsFeatured from "@/Components/Deals/featured";
 import DealsGrid from "@/Components/Deals/dealGrid";
 
 const DealsPage = () => {
+
+  const {user} = useAuth()
   const router = useRouter();
 
   const [deals, setDeals] = useState([]);
@@ -70,7 +74,7 @@ const DealsPage = () => {
   return (
     <div className="min-h-screen bg-[#fffaf5] text-[#2b211d]">
       <main>
-        <HomeNavbar/>
+        <HomeNavbar user={user}/>
         <DealsHeader />
 
         <DealsSearch

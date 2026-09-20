@@ -9,11 +9,15 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import api from "@/src/lib/axios";
 import handleError from "@/src/utils/handleError";
 
+import { useAuth } from "@/src/context/authProvider";
+
 import MenuHeader from "@/Components/menu/Header";
 import MenuCategories from "@/Components/menu/categories";
 import ProductGrid from "@/Components/menu/productsGrid";
 
 const MenuPage = () => {
+
+  const {user} = useAuth()
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -67,7 +71,7 @@ const MenuPage = () => {
   return (
     <div className="min-h-screen bg-[#fffaf5] text-[#2b211d]">
       <main>
-        <HomeNavbar/>
+        <HomeNavbar user={user}/>
         <MenuHeader />
 
         <MenuCategories

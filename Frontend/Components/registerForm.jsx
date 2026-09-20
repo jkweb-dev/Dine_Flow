@@ -16,18 +16,17 @@ const RegisterForm = ({
   loading,
   onChange,
   onSubmit,
+  redirect,
 }) => {
   return (
     <main className="min-h-screen bg-[#fff8f1] text-[#241b16]">
       <div className="grid min-h-screen lg:grid-cols-2">
         {/* Left Food Section */}
         <section className="relative hidden overflow-hidden bg-[#c92a2a] lg:flex">
-          {/* Decorative circles */}
           <div className="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#f97316]/40" />
           <div className="absolute -bottom-32 -right-20 h-96 w-96 rounded-full bg-[#f97316]/30" />
 
           <div className="relative z-10 flex w-full flex-col justify-between p-12 xl:p-16">
-            {/* Logo */}
             <div className="flex items-center gap-3 text-white">
               <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-[#c92a2a] shadow-lg">
                 <ChefHat size={25} strokeWidth={2.5} />
@@ -38,7 +37,6 @@ const RegisterForm = ({
               </span>
             </div>
 
-            {/* Main content */}
             <div className="max-w-xl">
               <div className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/15 px-4 py-2 text-sm font-semibold text-white backdrop-blur">
                 <Sparkles size={16} className="text-[#ffd166]" />
@@ -58,7 +56,6 @@ const RegisterForm = ({
                 deals, easy ordering, and real-time delivery tracking.
               </p>
 
-              {/* Food visual */}
               <div className="mt-10 flex items-center gap-4">
                 <div className="flex h-20 w-20 rotate-[-8deg] items-center justify-center rounded-3xl bg-[#ffd166] text-5xl shadow-xl">
                   🍕
@@ -74,10 +71,11 @@ const RegisterForm = ({
               </div>
             </div>
 
-            {/* Bottom */}
             <div className="flex items-center gap-3 text-sm text-white/70">
               <ShieldCheck size={18} />
-              <span>Your account is protected with secure authentication.</span>
+              <span>
+                Your account is protected with secure authentication.
+              </span>
             </div>
           </div>
         </section>
@@ -251,8 +249,6 @@ const RegisterForm = ({
                 </div>
               </div>
 
-            
-
               {/* Submit */}
               <button
                 type="submit"
@@ -280,7 +276,11 @@ const RegisterForm = ({
             <p className="mt-7 text-center text-sm text-[#756b65]">
               Already have an account?{" "}
               <Link
-                href="/login"
+                href={
+                  redirect
+                    ? `/login?redirect=${encodeURIComponent(redirect)}`
+                    : "/login"
+                }
                 className="font-bold text-[#c92a2a] transition hover:text-[#f97316]"
               >
                 Sign in

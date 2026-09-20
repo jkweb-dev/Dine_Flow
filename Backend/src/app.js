@@ -8,6 +8,7 @@ import Admin_Userrouter from "./routes/admin-user.js";
 import productRoutes from "./routes/productRoute.js";
 import dealRoutes from "./routes/deal.js";
 import homeRoutes from "./routes/home.js";
+import orderRoutes from "./routes/order.js";
 
 const app = express();
 
@@ -36,6 +37,7 @@ app.use("/api/admin",Admin_Userrouter);
 app.use("/api/admin/products", productRoutes);
 app.use("/api/admin/deals", dealRoutes);
 app.use("/api/home", homeRoutes);
+app.use("/api/orders", orderRoutes);
 
 // Admin routes
 

@@ -3,6 +3,7 @@
 
 import { useRouter } from "next/navigation";
 
+import { useAuth } from "@/src/context/authProvider";
 import { useCart } from "@/src/context/cartProvider";
 
 import CartHeader from "@/Components/Cart/header";
@@ -12,6 +13,7 @@ import EmptyCart from "@/Components/Cart/EmptyCart";
 
 const CartPage = () => {
   const router = useRouter();
+  const {user} = useAuth()
 
   const {
     cartItems,
@@ -40,7 +42,15 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
-    router.push("/checkout");
+
+    if (!user) { 
+      router.push("/login?redirect=/checkout")
+      return ;
+    }
+      router.push("/checkout");
+    
+
+    
   };
 
   // Loading state

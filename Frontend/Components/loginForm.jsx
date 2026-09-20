@@ -16,6 +16,7 @@ const LoginForm = ({
   loading,
   onChange,
   onSubmit,
+  redirect
 }) => {
   return (
     <main className="min-h-screen bg-[#fff8f1] text-[#241b16]">
@@ -277,10 +278,13 @@ const LoginForm = ({
             <p className="mt-7 text-center text-sm text-[#756b65]">
               Don't have an account?{" "}
 
-              <Link
-                href="/register"
-                className="font-bold text-[#c92a2a] transition hover:text-[#f97316]"
-              >
+             <Link
+  href={
+    redirect
+      ? `/register?redirect=${encodeURIComponent(redirect)}`
+      : "/register"
+  }
+>
                 Create account
               </Link>
             </p>

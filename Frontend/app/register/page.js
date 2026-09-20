@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
 import { useAuth } from "@/src/context/authProvider";
 import RegisterForm from "@/Components/registerForm";
 import handleError from "@/src/utils/handleError";
@@ -9,7 +10,11 @@ import toast from "react-hot-toast";
 
 const RegisterPage = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+
   const { register } = useAuth();
+
+  const redirect = searchParams.get("redirect");
 
   const [formData, setFormData] = useState({
     userId: "",
@@ -19,7 +24,6 @@ const RegisterPage = () => {
     confirmPassword: "",
   });
 
- 
   const [loading, setLoading] = useState(false);
 
   const handleChange = (event) => {
@@ -29,14 +33,10 @@ const RegisterPage = () => {
       ...previousData,
       [name]: value,
     }));
-
-   
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-  
 
     const {
       userId,
@@ -66,9 +66,11 @@ const RegisterPage = () => {
 
       await register(userId, name, phone, password);
 
-       toast.success("Register successful!");
+      toast.success("Registration successful!");
+
+      router.push(redirect || "/");
     } catch (error) {
-     handleError(error , router)
+      handleError(error, router);
     } finally {
       setLoading(false);
     }
@@ -77,10 +79,10 @@ const RegisterPage = () => {
   return (
     <RegisterForm
       formData={formData}
-     
       loading={loading}
       onChange={handleChange}
       onSubmit={handleSubmit}
+      redirect={redirect}
     />
   );
 };

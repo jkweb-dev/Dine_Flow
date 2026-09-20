@@ -1,3 +1,4 @@
+"use client";
 import {
   ArrowRight,
   CheckCircle2,
@@ -13,6 +14,7 @@ import {
   UtensilsCrossed,
 } from "lucide-react";
 import Link from "next/link";
+import { useAuth } from "@/src/context/authProvider";
 import HomeNavbar from "@/Components/Home/Navbar";
 
 const features = [
@@ -82,7 +84,12 @@ const highlights = [
   "Live delivery location tracking",
 ];
 
+
+
 export default function AboutPage() {
+
+  const {user} = useAuth() ;
+
   return (
     <main className="min-h-screen overflow-hidden bg-[#fffaf6] text-[#2b1710]">
       {/* ================= HERO ================= */}
@@ -94,7 +101,7 @@ export default function AboutPage() {
           <div className="absolute bottom-0 left-1/2 h-64 w-64 -translate-x-1/2 rounded-full bg-[#f59e0b]/10 blur-3xl" />
         </div>
 
-<HomeNavbar/>
+<HomeNavbar user={user}/>
         <div className="mx-auto max-w-7xl px-5 pb-20 pt-16 sm:px-8 sm:pt-24 lg:px-10 lg:pb-28 lg:pt-28">
           <div className="grid items-center gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
             {/* Hero text */}
