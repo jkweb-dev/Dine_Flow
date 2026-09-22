@@ -9,6 +9,7 @@ import productRoutes from "./routes/productRoute.js";
 import dealRoutes from "./routes/deal.js";
 import homeRoutes from "./routes/home.js";
 import orderRoutes from "./routes/order.js";
+import accountRoutes from "./routes/account.js";
 
 const app = express();
 
@@ -38,7 +39,7 @@ app.use("/api/admin/products", productRoutes);
 app.use("/api/admin/deals", dealRoutes);
 app.use("/api/home", homeRoutes);
 app.use("/api/orders", orderRoutes);
-
+app.use("/api/account", accountRoutes);
 // Admin routes
 
 

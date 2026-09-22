@@ -8,6 +8,7 @@ import handleError from "@/src/utils/handleError";
 
 import Header from "@/Components/orders/header";
 import OrderCard from "@/Components/orders/orderCard";
+import LoginRequired from "@/Components/Account/loginRequired";
 
 const OrdersPage = () => {
   const { user, loading: authLoading } = useAuth();
@@ -19,6 +20,7 @@ const OrdersPage = () => {
     if (authLoading) return;
 
     if (!user) {
+       setLoading(false);
       return;
     }
 
@@ -91,7 +93,7 @@ const OrdersPage = () => {
   }
 
   if (!user) {
-    return null;
+    return <LoginRequired/>
   }
 
   return (
