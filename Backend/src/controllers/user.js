@@ -1,10 +1,12 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import User from "../models/User.js";
+import User from "../models/user.js";
+
 
 const generateToken = (user) => {
   return jwt.sign(
     {
+      id : user._id ,
       userId: user.userId,
       role: user.role,
       name :user.name ,

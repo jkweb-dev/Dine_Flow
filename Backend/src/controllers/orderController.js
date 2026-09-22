@@ -275,6 +275,7 @@ export const createOrder = async (req, res) => {
       orderId,
 
       customer: {
+        id : req.user.id,
         userId: req.user.userId,
         name: req.user.name,
         phone: req.user.phone,
