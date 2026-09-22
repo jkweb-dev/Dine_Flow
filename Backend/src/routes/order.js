@@ -1,6 +1,6 @@
 import express from "express";
 
-import { createOrder } from "../controllers/orderController.js";
+import { createOrder  , getCustomerOrder , getCustomerOrders} from "../controllers/orderController.js";
 
 import authMiddleware from "../middleware/authMidddleware.js";
 
@@ -19,4 +19,21 @@ router.post(
   createOrder
 );
 
+
+
+router.get(
+  "/",
+  authMiddleware,
+  roleMiddleware("customer"),
+  getCustomerOrders
+);
+
+router.get(
+  "/:orderId",
+  authMiddleware,
+  roleMiddleware("customer"),
+  getCustomerOrder
+);
+
 export default router;
+

@@ -321,3 +321,65 @@ export const createOrder = async (req, res) => {
     });
   }
 };
+
+
+
+
+
+
+
+
+export const getCustomerOrders = async (req, res) => {
+  try {
+    const orders = await Order.find({
+      "customer.userId": req.user.userId,
+    })
+      .sort({ createdAt: -1 })
+      .populate("customer.id", "name phone userId")
+      .populate("deliveryBoy", "name phone");
+
+    res.status(200).json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.error("Get customer orders error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch orders.",
+    });
+  }
+};
+
+export const getCustomerOrder = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const order = await Order.findOne({
+      orderId,
+      "customer.userId": req.user.userId,
+    })
+      .populate("customer.id", "name phone userId")
+      .populate("deliveryBoy", "name phone");
+
+    if (!order) {
+      return res.status(404).json({
+        success: false,
+        message: "Order not found.",
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      order,
+    });
+  } catch (error) {
+    console.error("Get customer order error:", error);
+
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch order.",
+    });
+  }
+};

@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       setUser(null);
     } finally {
-      setLoading(false);cd
+      setLoading(false);
     }
   };
 
