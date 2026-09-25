@@ -11,6 +11,7 @@ import homeRoutes from "./routes/home.js";
 import orderRoutes from "./routes/order.js";
 import accountRoutes from "./routes/account.js";
 import adminCustomerRoutes from "./routes/admin-Customers.js";
+import adminOrderRoutes from "./routes/Admin_Orders.js";
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.use("/api/home", homeRoutes);
 app.use("/api/orders", orderRoutes);
 app.use("/api/account", accountRoutes);
 app.use("/api/admin/customers", adminCustomerRoutes);
+app.use("/api/admin/orders", adminOrderRoutes);
 // Admin routes
 
 
