@@ -67,7 +67,7 @@ const OrdersPage = () => {
   const fetchDeliveryBoys = async () => {
     try {
       const response = await api.get("/admin/orders/delivery-boys");
-      console.log(response.data.deliveryBoys)
+    
       setDeliveryBoys(response.data.deliveryBoys || []);
     } catch (error) {
       handleError(error, router, {
