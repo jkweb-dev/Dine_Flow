@@ -13,6 +13,7 @@ import accountRoutes from "./routes/account.js";
 import adminCustomerRoutes from "./routes/admin-Customers.js";
 import adminOrderRoutes from "./routes/Admin_Orders.js";
 import adminSettingsRoutes from "./routes/Admin_setting.js";
+import adminDashboardRoutes from "./routes/admin_Home.js";
 
 const app = express();
 
@@ -46,6 +47,7 @@ app.use("/api/account", accountRoutes);
 app.use("/api/admin/customers", adminCustomerRoutes);
 app.use("/api/admin/orders", adminOrderRoutes);
 app.use("/api/admin/settings", adminSettingsRoutes);
+app.use("/api/admin/dashboard",adminDashboardRoutes);
 // Admin routes
 
 
