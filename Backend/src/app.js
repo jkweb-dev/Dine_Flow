@@ -15,6 +15,7 @@ import adminOrderRoutes from "./routes/Admin_Orders.js";
 import adminSettingsRoutes from "./routes/Admin_setting.js";
 import adminDashboardRoutes from "./routes/admin_Home.js";
 import deliveryOrderRoutes from "./routes/deliveryBoyOrders.js";
+import deliveryActiveOrderRoutes from "./routes/deliveryActiveOrders.js";
 
 const app = express();
 
@@ -50,6 +51,8 @@ app.use("/api/admin/orders", adminOrderRoutes);
 app.use("/api/admin/settings", adminSettingsRoutes);
 app.use("/api/admin/dashboard",adminDashboardRoutes);
 app.use("/api/delivery/orders", deliveryOrderRoutes);
+app.use(
+  "/api/delivery/active-orders", deliveryActiveOrderRoutes);
 // Admin routes
 
 

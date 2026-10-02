@@ -33,17 +33,7 @@ const Topbar = ({ onMenuClick }) => {
 
       {/* Right */}
       <div className="flex items-center gap-2 sm:gap-3">
-        {/* Notifications */}
-        <button
-          type="button"
-          className="relative flex h-10 w-10 items-center justify-center rounded-xl border border-orange-100 bg-white text-[#6f5a50] transition hover:border-orange-200 hover:bg-[#fff8f1] hover:text-[#c92a2a]"
-          aria-label="Notifications"
-        >
-          <Bell size={18} />
-
-          {/* Notification Dot */}
-          <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-[#c92a2a] ring-2 ring-white" />
-        </button>
+        
 
         {/* User */}
         <div className="flex items-center gap-2 rounded-xl border border-orange-100 bg-[#fffaf6] px-2 py-1.5 sm:gap-3 sm:px-3">
