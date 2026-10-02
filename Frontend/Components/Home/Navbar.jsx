@@ -142,6 +142,14 @@ const HomeNavbar = ({
                 <User className="h-[17px] w-[17px]" />
                 Account
               </Link>
+
+               <Link
+                href="/cart"
+                className="flex h-10 items-center gap-2 rounded-full bg-[#fff1e8] px-4 text-sm font-semibold text-[#b52b27] transition-all duration-200 hover:bg-[#ffe7d7]"
+              >
+                <User className="h-[17px] w-[17px]" />
+                Cart
+              </Link>
             </>
           ) : (
             <Link
